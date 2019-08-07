@@ -4,7 +4,7 @@ time.js
 Parses time input with no relation to dates,
 with the option to convert to the next immediate corresponding Date.
 
-Built for [Promt](http://promtapp.com), to solve [this problem](http://stackoverflow.com/q/141348/962091).
+Built to solve [this problem](http://stackoverflow.com/q/141348/962091). Forked from [zackdever/time](https://github.com/zackdever/time).
 
 **Browser**
  

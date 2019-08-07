@@ -39,7 +39,7 @@ describe('Time', function() {
     it('should be the same with or without `new`', function() {
       var newT = new time('314')
         , t = time('314');
-      t.nextDate().should.equal(newT.nextDate());
+      t.nextDate().toString().should.equal(newT.nextDate().toString());
       t.hours().should.equal(newT.hours());
       t.minutes().should.equal(newT.minutes());
     });
