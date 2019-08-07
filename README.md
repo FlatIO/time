@@ -1,20 +1,16 @@
-time.js
-=======
+@flat/time
+==========
 
-[![Build Status](https://img.shields.io/travis/FlatIO/time.svg?style=flat)](https://travis-ci.org/FlatIO/api-client-js)
+[![Build Status](https://img.shields.io/travis/FlatIO/time.svg?style=flat)](https://travis-ci.org/FlatIO/time)
+
 
 Parses time input with no relation to dates,
 with the option to convert to the next immediate corresponding Date.
 
 Built to solve [this problem](http://stackoverflow.com/q/141348/962091). Forked from [zackdever/time](https://github.com/zackdever/time).
 
-**Browser**
-
 ```
-$ bower install time-js # or just manually download time.js
-```
-```html
-<script src="component/time-js/time.js"></script>
+$ npm install @flat/time
 ```
 ```js
 var t = Time('2p');
@@ -27,16 +23,6 @@ t.nextDate();          // Sep 10 2:00 (assuming it is 1 o'clock Sep 10)
 t.format('hh:mm AM')   // '02:00 PM'
 t.isValid();           // true
 Time.isValid('99:12'); // false
-```
-
-**Node**
-
-```
-$ npm install time-js
-```
-```js
-var time = require('time-js');
-time('2');
 // you get the idea, or see below for more ideas
 ```
 
