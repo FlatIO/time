@@ -57,12 +57,12 @@
 
     // gets or sets hours
     this.hours = function(newHours) {
-      if (!newHours) return hours;
+      if (newHours === undefined) return hours;
       hours = parseInt(newHours, 10);
     };
 
     this.militaryHours = function(newHours) {
-      if (!newHours) {
+      if (newHours === undefined) {
         if (period === AM || !period) {
           if (hours === 12 && period)
             return 0;
@@ -84,13 +84,13 @@
 
     // gets or sets minutes
     this.minutes = function(newMinutes) {
-      if (!newMinutes) return minutes;
+      if (newMinutes === undefined) return minutes;
       minutes = parseInt(newMinutes, 10);
     };
 
     // gets or sets period
     this.period = function(newPeriod) {
-      if (!newPeriod) return period;
+      if (newPeriod === undefined) return period;
       period = parsePeriod(newPeriod);
     };
   }

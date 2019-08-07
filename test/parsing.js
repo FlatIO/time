@@ -201,4 +201,52 @@ describe('Time', function() {
       time('24').toISOString().should.equal('invalid time');
     });
   });
+
+  describe('setter#minutes', function () {
+    it('should set minutes > 0', function () {
+      var t = new time('8:10');
+      t.minutes().should.equal(10);
+      t.minutes(15); // set
+      t.minutes().should.equal(15);
+    });
+
+    it('should set minutes === 0', function () {
+      var t = new time('8:10');
+      t.minutes().should.equal(10);
+      t.minutes(0); // set
+      t.minutes().should.equal(0);
+    });
+  });
+
+  describe('setter#hours', function () {
+    it('should set hours > 0', function () {
+      var t = new time('8:10');
+      t.hours().should.equal(8);
+      t.hours(5); // set
+      t.hours().should.equal(5);
+    });
+
+    it('should set hours === 0', function () {
+      var t = new time('8:10');
+      t.hours().should.equal(8);
+      t.hours(0); // set
+      t.hours().should.equal(0);
+    });
+  });
+
+  describe('setter#militaryHours', function () {
+    it('should set militaryHours > 0', function () {
+      var t = new time('22:10');
+      t.militaryHours().should.equal(22);
+      t.militaryHours(5); // set
+      t.militaryHours().should.equal(5);
+    });
+
+    it('should set militaryHours === 0', function () {
+      var t = new time('22:10');
+      t.militaryHours().should.equal(22);
+      t.militaryHours(0); // set
+      t.militaryHours().should.equal(0);
+    });
+  });
 });
