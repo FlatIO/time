@@ -103,19 +103,23 @@ describe('Time', function() {
         result = time(hour);
         result.isValid().should.be.ok;
         result.hours().should.equal(parseInt(hour, 10));
+        result.militaryHours().should.equal(parseInt(hour));
         result.minutes().should.equal(0);
       }
     });
 
-    it('should fail made up hours e.g. 0, 13, 50', function() {
-      time('0').isValid().should.not.be.ok;
-      time('13').isValid().should.not.be.ok;
+    it('should pass military time hours', function() {
+      time('0').isValid().should.be.ok;
+      time('13').isValid().should.be.ok;
+      time('0:20').isValid().should.be.ok;
+      time('13:12').isValid().should.be.ok;
+    });
+
+    it('should fail made up hours e.g. 50', function() {
       time('50').isValid().should.not.be.ok;
     });
 
-    it('should fail made up hours e.g. 0:20, 13:12, 50:00', function() {
-      time('0:20').isValid().should.not.be.ok;
-      time('13:12').isValid().should.not.be.ok;
+    it('should fail made up hours e.g. 50:00', function() {
       time('50:00').isValid().should.not.be.ok;
     });
 
@@ -168,11 +172,33 @@ describe('Time', function() {
     });
 
     it('should fail made up minutes without the colon e.g. 13, 160', function() {
-      time('14').isValid().should.not.be.ok;
+      // time('14').isValid().should.not.be.ok;
       time('160').isValid().should.not.be.ok;
       time('1299').isValid().should.not.be.ok;
       time('12021').isValid().should.not.be.ok;
       time('12218').isValid().should.not.be.ok;
+    });
+
+    it('should not allow twenty four hundred hours', function() {
+      time('2400').isValid().should.not.be.ok;
+    });
+  });
+
+  describe('#toISOString', function() {
+    it('should output the time component specified by ISO8601', function() {
+      time('12:00 am').toISOString().should.equal('00:00');
+      time('1:00 am').toISOString().should.equal('01:00');
+      time('11:00 am').toISOString().should.equal('11:00');
+      time('12:00 pm').toISOString().should.equal('12:00');
+      time('1:00 pm').toISOString().should.equal('13:00');
+      time('11:00 pm').toISOString().should.equal('23:00');
+      time('0').toISOString().should.equal('00:00');
+      time('1').toISOString().should.equal('01:00');
+      time('11').toISOString().should.equal('11:00');
+      time('12').toISOString().should.equal('12:00');
+      time('13').toISOString().should.equal('13:00');
+      time('23').toISOString().should.equal('23:00');
+      time('24').toISOString().should.equal('invalid time');
     });
   });
 });

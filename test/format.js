@@ -33,10 +33,10 @@ describe('Time', function() {
       var t = time('03:23 pm');
       var expected = '03:23';
       t.format('hh:mm').should.equal(expected);
-      t.format('HH:mm').should.equal(expected);
-      t.format('Hh:Mm').should.equal(expected);
-      t.format('hH:MM').should.equal(expected);
-      t.format('H:MM').should.equal('3:23');
+      // t.format('HH:mm').should.equal(expected);
+      t.format('hh:Mm').should.equal(expected);
+      t.format('hh:MM').should.equal(expected);
+      t.format('h:MM').should.equal('3:23');
     });
 
     it('should not care if a or p is used for period', function() {
@@ -118,6 +118,41 @@ describe('Time', function() {
     it('should not allow a single minute', function() {
       var t = time('12:30');
       t.format('h:m').should.equal('invalid format');
+    });
+
+    it('should format military time: 0', function() {
+      var t = time('0');
+      t.format('hmm').should.equal('1200');
+      t.format('hhmm').should.equal('1200');
+      t.format('hh:mm AM').should.equal('12:00 AM');
+      t.format('H').should.equal('0');
+      t.format('HH').should.equal('00');
+      t.format('HHmm').should.equal('0000');
+      t.format('HH:mm').should.equal('00:00');
+    });
+
+    it('should format military time: 13', function() {
+      var t = time('13');
+      t.format('hmm').should.equal('100');
+      t.format('hhmm').should.equal('0100');
+      t.format('hh:mm AM').should.equal('01:00 PM');
+      t.format('H').should.equal('13');
+      t.format('HH').should.equal('13');
+      t.format('HHmm').should.equal('1300');
+      t.format('HH:mm').should.equal('13:00');
+      t.format('HH:mm AM').should.equal('13:00');
+    });
+
+    it('should format military time: 9:55 PM', function() {
+      var t = time('9:55 PM');
+      t.format('hmm').should.equal('955');
+      t.format('hhmm').should.equal('0955');
+      t.format('hh:mm AM').should.equal('09:55 PM');
+      t.format('H').should.equal('21');
+      t.format('HH').should.equal('21');
+      t.format('HHmm').should.equal('2155');
+      t.format('HH:mm').should.equal('21:55');
+      t.format('HH:mm AM').should.equal('21:55');
     });
   });
 });
