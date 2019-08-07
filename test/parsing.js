@@ -103,7 +103,7 @@ describe('Time', function() {
         result = time(hour);
         result.isValid().should.be.ok;
         result.hours().should.equal(parseInt(hour, 10));
-        result.militaryHours().should.equal(parseInt(hour));
+        result.militaryHours().should.equal(parseInt(hour, 10));
         result.minutes().should.equal(0);
       }
     });
