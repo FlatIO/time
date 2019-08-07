@@ -1,6 +1,8 @@
 time.js
 =======
 
+[![Build Status](https://img.shields.io/travis/FlatIO/time.svg?style=flat)](https://travis-ci.org/FlatIO/api-client-js)
+
 Parses time input with no relation to dates,
 with the option to convert to the next immediate corresponding Date.
 
